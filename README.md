@@ -1,6 +1,6 @@
 # redup.python.service.example
 
-![Python Test status](https://github.com/redup-ai/redup.python.service.example/actions/workflows/python-test.yml/badge.svg?branch=master)
+![Buld Docker Test status](https://github.com/redup-ai/redup.python.service.example/actions/workflows/docker-test.yml/badge.svg?branch=master)
 
 
 Python simple example service.
