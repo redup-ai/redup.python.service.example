@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "redup-service-example"
+description = "Example of python service."
+authors = [{name = "REDUP"}]
+readme = "README.md"
+license = {text = "MIT"}
+keywords = ["redup", "service", "example"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+requires-python = ">=3.9"
+
+dynamic = ["version", "dependencies"]
+
+[project.urls]
+Homepage = "https://github.com/redup-ai/redup.python.service.example/blob/master/README.md"
+Repository = "https://github.com/redup-ai/redup.python.service.example"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+dependencies = {file = ["requirements.txt"]}

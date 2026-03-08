@@ -1,0 +1,13 @@
+service:
+  console_log_level: INFO
+  port: "[::]:9878"
+  grpc_queue_size: 16
+  max_workers: 8
+  hpa_max_workers: 4
+  grpc_msg_opts:
+    options:
+      - ['grpc.max_send_message_length', 104857600]
+      - ['grpc.max_message_length', 104857600]
+      - ['grpc.max_receive_message_length', 104857600]
+
+Example: {}
