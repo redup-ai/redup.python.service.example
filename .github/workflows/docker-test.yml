@@ -5,6 +5,13 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - base_image: "python:3.11-slim-bullseye"
+          tag_suffix: "slim-bullseye"
+        - base_image: "registry.astralinux.ru/library/astra/ubi18-python311:1.8"
+          tag_suffix: "astra-ubi18-python311"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,6 +24,8 @@ jobs:
         with:
           context: .
           file: Dockerfile
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
           tags: ${{ secrets.DOCKERHUB_USER }}/${{ github.event.repository.name }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
