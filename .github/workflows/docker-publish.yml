@@ -10,6 +10,13 @@ permissions:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - base_image: "python:3.11-slim-bullseye"
+          tag_suffix: "slim-bullseye"
+        - base_image: "registry.astralinux.ru/library/astra/ubi18-python311:1.8"
+          tag_suffix: "astra-ubi18-python311"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,8 +31,7 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USER }}/${{ github.event.repository.name }}
           tags: |
-            type=raw,value=${{ steps.version.outputs.version }}
-            type=raw,value=latest
+            type=raw,value=${{ steps.version.outputs.version }}-${{ matrix.tag_suffix }}
           flavor: |
             latest=false
 
@@ -44,6 +50,8 @@ jobs:
           context: .
           file: Dockerfile
           push: true
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha

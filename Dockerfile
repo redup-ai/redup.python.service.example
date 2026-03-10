@@ -1,4 +1,6 @@
-FROM python:3.13-slim-bullseye AS builder
+ARG BASE_IMAGE=python:3.11-slim-bullseye
+
+FROM ${BASE_IMAGE} AS builder
 
 RUN python3 -m pip install --no-cache -U uv
 
@@ -13,9 +15,9 @@ COPY ./VERSION /app/src/VERSION
 COPY ./README.md /app/src/README.md
 RUN uv pip install --no-cache --system --python python --target=/app/libs /app/src
 
-FROM python:3.13-slim-bullseye
+FROM ${BASE_IMAGE}
 
-COPY --from=builder /app/libs /root/.local/lib/python3.13/site-packages
+COPY --from=builder /app/libs /root/.local/lib/python3.11/site-packages
 
 COPY ./config/config.yaml /config/config.yaml
 
