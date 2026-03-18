@@ -13,17 +13,17 @@ jobs:
     strategy:
       matrix:
         include:
-        - base_image: "python:3.11-slim-bullseye"
-          tag_suffix: "slim-bullseye"
-        - base_image: "registry.astralinux.ru/library/astra/ubi18-python311:1.8"
-          tag_suffix: "astra-ubi18-python311"
+        - base_image: "redup4ai/python:3.14.2-nogil-slim"
+          tag_suffix: "3.14.2-nogil-slim"
+        - base_image: "redup4ai/python:3.14.2-nogil-ubi18-1.8.5"
+          tag_suffix: "3.14.2-nogil-ubi18-1.8.5"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Get version
         id: version
-        run: echo "version=$(cat VERSION | tr -d '\n')" >> $GITHUB_OUTPUT
+        run: echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
 
       - name: Docker meta
         id: meta
