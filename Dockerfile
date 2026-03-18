@@ -15,7 +15,7 @@ RUN --mount=type=secret,id=PIP_INDEX_URL \
     && export GRPC_PYTHON_LDFLAGS="-Wl,-s" \
     && export CFLAGS="-s -Os" \
     && export CPPFLAGS="-s -Os" \
-    && uv pip install --no-cache --system --python python3 --target=/app/libs -r /tmp/requirements.txt
+    && uv pip install --no-cache --system --python python3 --target=/app/libs -r /tmp/requirements.txt --resolution=lowest-direct
 
 COPY ./src/ /app/src
 COPY ./VERSION /app/src/VERSION
