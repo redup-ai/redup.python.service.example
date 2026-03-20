@@ -1,2 +1,2 @@
 redup-servicekit<2.0,>=1.0.4
-redup-proto-textprocessor<2.0,>=1.0.1
+redup-proto-textprocessor<2.0,>=1.0.2
