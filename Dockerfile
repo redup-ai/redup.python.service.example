@@ -25,11 +25,9 @@ RUN uv pip install --no-cache --system --python python3 --target=/app/libs /app/
 FROM ${BASE_IMAGE}
 
 COPY --from=builder /app/libs /app/libs
-ENV PYTHONPATH=/app/libs:${PYTHONPATH}
+ENV PYTHONPATH=/app/libs
 
 COPY ./config/config.yaml /config/config.yaml
-
-ENV PATH=/root/.local/bin:$PATH
 
 WORKDIR /app/
 
