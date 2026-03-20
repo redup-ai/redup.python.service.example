@@ -27,5 +27,3 @@ jobs:
           build-args: |
             BASE_IMAGE=${{ matrix.base_image }}
           tags: ${{ secrets.DOCKERHUB_USER }}/${{ github.event.repository.name }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
